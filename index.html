@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>McDonald's Order System</title>
+
+    <link rel="stylesheet" href="https://pyscript.net/releases/2025.2.4/core.css">
+    <script type="module" src="https://pyscript.net/releases/2025.2.4/core.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #171717;
+        }
+
+        .navbar {
+            height: 70px;
+            background-color: #111111;
+            color: white;
+            display: flex;
+            align-items: center;
+            padding: 0 30px;
+        }
+
+        .logo {
+            color: #ffcc00;
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .brand {
+            font-size: 24px;
+            font-weight: bold;
+            margin-left: 15px;
+        }
+
+        .links {
+            margin-left: auto;
+        }
+
+        .links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 16px;
+        }
+
+        .links a:hover {
+            color: #ffcc00;
+        }
+
+        .box {
+            width: 520px;
+            margin: 40px auto;
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: #d92316;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        .m-logo {
+            background-color: #ffcc00;
+            color: #d92316;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .header h1 {
+            margin: 10px 0 5px;
+            font-size: 28px;
+        }
+
+        .header p {
+            color: #ffcc00;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .menu {
+            padding: 25px 35px;
+        }
+
+        .menu-title {
+            font-size: 17px;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .item {
+            display: flex;
+            align-items: center;
+            border: 1px solid #eeeeee;
+            border-radius: 12px;
+            padding: 13px;
+            margin-bottom: 12px;
+        }
+
+        .item input {
+            width: 20px;
+            height: 20px;
+            accent-color: #d92316;
+        }
+
+        .item-name {
+            flex: 1;
+            margin-left: 12px;
+            font-weight: bold;
+        }
+
+        .price {
+            color: #d92316;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+
+        .quantity {
+            width: 45px;
+            padding: 7px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .order-button {
+            width: 100%;
+            background-color: #d92316;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .order-button:hover {
+            background-color: #b91d13;
+        }
+
+        #receipt {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <div class="logo">M</div>
+        <div class="brand">McDonald's</div>
+
+        <div class="links">
+            <a href="index.html">🧾 Receipt Generator</a>
+            <a href="sku.html">▥ SKU Generator</a>
+        </div>
+    </div>
+
+    <div class="box">
+
+        <div class="header">
+            <div class="m-logo">M</div>
+
+            <h1>McDonald's Order System</h1>
+
+            <p>Group 1 — Store #01025</p>
+        </div>
+
+        <div class="menu">
+
+            <div class="menu-title">
+                🍴 OFFICIAL MCDO MENU
+            </div>
+
+            <div class="item">
+                <input type="checkbox" id="bigmac">
+                <div class="item-name">Big Mac</div>
+                <div class="price">₱189</div>
+                <input class="quantity" id="bigmac_qty" type="number" value="1" min="1">
+            </div>
+
+            <div class="item">
+                <input type="checkbox" id="chicken">
+                <div class="item-name">1-pc Chicken McDo w/ Rice</div>
+                <div class="price">₱115</div>
+                <input class="quantity" id="chicken_qty" type="number" value="1" min="1">
+            </div>
+
+            <div class="item">
+                <input type="checkbox" id="cheeseburger">
+                <div class="item-name">Cheeseburger</div>
+                <div class="price">₱89</div>
+                <input class="quantity" id="cheeseburger_qty" type="number" value="1" min="1">
+            </div>
+
+            <div class="item">
+                <input type="checkbox" id="fries">
+                <div class="item-name">Fries (Medium)</div>
+                <div class="price">₱75</div>
+                <input class="quantity" id="fries_qty" type="number" value="1" min="1">
+            </div>
+
+            <div class="item">
+                <input type="checkbox" id="mcflurry">
+                <div class="item-name">McFlurry w/ Oreo</div>
+                <div class="price">₱69</div>
+                <input class="quantity" id="mcflurry_qty" type="number" value="1" min="1">
+            </div>
+
+            <div class="item">
+                <input type="checkbox" id="coffee">
+                <div class="item-name">McCafé Iced Coffee</div>
+                <div class="price">₱65</div>
+                <input class="quantity" id="coffee_qty" type="number" value="1" min="1">
+            </div>
+
+            <div class="item">
+                <input type="checkbox" id="coke">
+                <div class="item-name">Coca-Cola (Medium)</div>
+                <div class="price">₱55</div>
+                <input class="quantity" id="coke_qty" type="number" value="1" min="1">
+            </div>
+
+            <button class="order-button" py-click="create_receipt">
+                🧾 Create Order & Print Receipt
+            </button>
+
+            <div id="receipt"></div>
+
+        </div>
+    </div>
+
+    <script type="py" src="./main.py"></script>
+
+</body>
+</html>
